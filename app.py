@@ -1,13 +1,27 @@
 import streamlit as st
 
-# Configuración básica de la pestaña
-st.set_page_config(page_title="Glosario de IA", page_icon="🤖", layout="centered")
+# Configuración de la página con icono para la pestaña
+st.set_page_config(
+    page_title="Glosario de IA",
+    page_icon="🧠",
+    layout="wide"
+)
 
-# Título de la aplicación
-st.title("🤖 Glosario de Inteligencia Artificial")
-st.markdown("---")
+# Menú lateral con datos de la tarea
+st.sidebar.title("Información del Trabajo")
+st.sidebar.info(
+    """
+    **Materia:** Fundamentos de Inteligencia Artificial  
+    **Actividad:** Subproducto No. 4 - Glosario  
+    **Integrantes:** Desarrollo de Aplicación Python  
+    """
+)
 
-# Diccionario con las 20 definiciones basadas en tu documento
+# Encabezado principal
+st.title("Glosario de Inteligencia Artificial")
+st.write("Explora los conceptos clave de la Inteligencia Artificial. Haz clic sobre cualquier término para ver su definición o utiliza el buscador para filtrar la lista.")
+
+# Diccionario de términos y definiciones
 glosario = {
     "1. Agentes de IA": "Una aplicación que logra un objetivo a través del procesamiento de entradas, realización de razonamientos con herramientas disponibles y toma de medidas según sus decisiones. Consiste en orquestación, perfil, memoria, razonamiento, modelo y herramientas.",
     "2. Ventana de contexto": "La cantidad de tokens que un modelo de base puede procesar en una instrucción determinada. Una ventana más grande permite procesar más información para generar respuestas más coherentes y completas.",
@@ -31,19 +45,28 @@ glosario = {
     "20. Asignación de tokens (Tokenización)": "Proceso automatizado mediante el cual los analizadores dividen el texto u otros tipos de datos en unidades con significado semántico llamadas tokens."
 }
 
-# Buscador interactivo
-busqueda = st.text_input("🔍 Buscar un término:", placeholder="Escribe aquí (ej. Tokens, Prompt, RAG)...")
+# Buscador
+busqueda = st.text_input("Buscar término o palabra clave:", "")
 
-st.subheader("Lista de conceptos:")
+st.markdown("---")
 
-# Filtrado y visualización dinámica
-terminos_encontrados = 0
-
+# Mostrar términos
+encontrados = 0
 for concepto, definicion in glosario.items():
     if busqueda.lower() in concepto.lower() or busqueda.lower() in definicion.lower():
-        with st.expander(f"📌 {concepto}"):
+        with st.expander(concepto):
             st.write(definicion)
-        terminos_encontrados += 1
+        encontrados += 1
 
-if terminos_encontrados == 0:
-    st.warning("No se encontraron conceptos con esa búsqueda.")
+if encontrados == 0:
+    st.warning("No se encontraron conceptos relacionados con tu búsqueda.")
+
+# Sección de Referencias Bibliográficas al final
+st.markdown("---")
+st.subheader("Referencias Bibliográficas")
+st.markdown(
+    """
+    * Google Cloud. (s. f.). *Glosario de IA generativa*. Documentación de Google Cloud. https://docs.cloud.google.com/docs/generative-ai/glossary?hl=es-419
+    * Ray, S. (6 de noviembre de 2023). *10 términos de IA que todos deberían conocer*. Microsoft Source LATAM. https://news.microsoft.com/source/latam/features/ia/10-terminos-de-ia-que-todos-deberian-conocer/
+    """
+)
