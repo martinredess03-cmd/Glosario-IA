@@ -13,7 +13,7 @@ st.sidebar.info(
     """
     **Materia:** Fundamentos de Inteligencia Artificial  
     **Actividad:** Subproducto No. 4 - Glosario  
-    **Integrantes:** Desarrollo de Aplicación Python  
+    **Presenta:** Martin Romero Velez  
     """
 )
 
