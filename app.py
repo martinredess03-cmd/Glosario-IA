@@ -11,7 +11,6 @@ st.sidebar.info(
     """
     **Materia:** Fundamentos de Inteligencia Artificial  
     **Actividad:** Subproducto No. 4 - Glosario  
-    **Formato:** Estructura de Arreglos/Diccionarios  
     """
 )
 
