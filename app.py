@@ -13,22 +13,27 @@ st.sidebar.info(
     """
     **Materia:** Fundamentos de Inteligencia Artificial  
     **Actividad:** Subproducto No. 4 - Glosario  
-    **Presenta:** Martin Romero Velez  
+    **Formato:** Estructura de Arreglos/Diccionarios  
     """
 )
 
-# Encabezado principal
+# Imagen del encabezado y título principal
+st.image(
+    "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=1200&q=80",
+    use_container_width=True
+)
+
 st.title("Glosario de Inteligencia Artificial")
 st.write("Explora los conceptos clave de la Inteligencia Artificial. Haz clic sobre cualquier término para ver su definición o utiliza el buscador para filtrar la lista.")
 
-# Diccionario de términos y definiciones
+# Diccionario de términos (Arreglo key-value sin definiciones generales de IA)
 glosario = {
     "1. Agentes de IA": "Una aplicación que logra un objetivo a través del procesamiento de entradas, realización de razonamientos con herramientas disponibles y toma de medidas según sus decisiones. Consiste en orquestación, perfil, memoria, razonamiento, modelo y herramientas.",
     "2. Ventana de contexto": "La cantidad de tokens que un modelo de base puede procesar en una instrucción determinada. Una ventana más grande permite procesar más información para generar respuestas más coherentes y completas.",
     "3. Incorporación (Embedding)": "Representación numérica de datos (texto, imágenes o video) mediante vectores que capturan las relaciones y significados semánticos entre diferentes entradas, reduciendo la dimensionalidad.",
     "4. Modelo de base": "Modelos grandes y potentes entrenados con grandes cantidades de datos (texto, imágenes, video, audio) que usan modelado estadístico para predecir respuestas y generar contenido nuevo.",
     "5. Llamadas a función": "Función que conecta los modelos de lenguaje grandes (LLM) a herramientas externas, como APIs y bases de datos, para responder con información y servicios en tiempo real.",
-    "6. IA generativa": "Tipo de IA que va más allá de clasificar y predecir. Utiliza modelos de base para generar contenido totalmente nuevo como texto, imágenes, audio o videos a partir de patrones aprendidos.",
+    "6. Tokenización (Asignación de tokens)": "Proceso automatizado mediante el cual los analizadores dividen el texto, términos complejos o entradas multimodales en unidades con significado semántico llamadas tokens.",
     "7. Fundamentación (Grounding)": "Proceso de conectar el resultado de un modelo a fuentes de información verificables para mejorar la exactitud de los resultados y reducir las alucinaciones.",
     "8. Modelo de Lenguaje Grande (LLM)": "Modelo de base basado en texto entrenado con grandes volúmenes de datos. Procesa el lenguaje natural imitando la forma en que se comunican los humanos.",
     "9. Latencia": "El tiempo que tarda un modelo en procesar una instrucción de entrada y generar una respuesta. Incluye el Tiempo hasta el primer token (TTFT) y el Tiempo hasta el último token (TTLT).",
@@ -42,7 +47,7 @@ glosario = {
     "17. Plugins": "Complementos que permiten a las aplicaciones de IA conectarse con otros programas, software y servicios externos para ampliar sus capacidades sin modificar el modelo base.",
     "18. Modelos multimodales": "Sistemas de IA capaces de procesar, comprender y combinar diferentes tipos de datos simultáneamente (texto, imágenes, audio, video).",
     "19. TTFT (Time To First Token)": "Métrica de latencia que mide el tiempo exacto que tarda el modelo en generar el primer token de respuesta tras recibir una instrucción.",
-    "20. Asignación de tokens (Tokenización)": "Proceso automatizado mediante el cual los analizadores dividen el texto u otros tipos de datos en unidades con significado semántico llamadas tokens."
+    "20. Vocabulario de Tokens": "El conjunto completo e integral de todos los tokens únicos que un modelo de lenguaje o modelo de base reconoce y puede procesar."
 }
 
 # Buscador
@@ -50,7 +55,7 @@ busqueda = st.text_input("Buscar término o palabra clave:", "")
 
 st.markdown("---")
 
-# Mostrar términos
+# Despliegue de términos
 encontrados = 0
 for concepto, definicion in glosario.items():
     if busqueda.lower() in concepto.lower() or busqueda.lower() in definicion.lower():
@@ -61,7 +66,7 @@ for concepto, definicion in glosario.items():
 if encontrados == 0:
     st.warning("No se encontraron conceptos relacionados con tu búsqueda.")
 
-# Sección de Referencias Bibliográficas al final
+# Referencias Bibliográficas
 st.markdown("---")
 st.subheader("Referencias Bibliográficas")
 st.markdown(
@@ -70,3 +75,7 @@ st.markdown(
     * Ray, S. (6 de noviembre de 2023). *10 términos de IA que todos deberían conocer*. Microsoft Source LATAM. https://news.microsoft.com/source/latam/features/ia/10-terminos-de-ia-que-todos-deberian-conocer/
     """
 )
+
+# Derechos Reservados al final
+st.markdown("---")
+st.caption("© 2026 Todos los derechos reservados. Desarrollado para la materia de Fundamentos de Inteligencia Artificial.")
