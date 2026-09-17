@@ -1,13 +1,11 @@
 import streamlit as st
 
-# Configuración de la página con icono para la pestaña
 st.set_page_config(
     page_title="Glosario de IA",
-    page_icon="🧠",
+    page_icon="",
     layout="wide"
 )
 
-# Menú lateral con datos de la tarea
 st.sidebar.title("Información del Trabajo")
 st.sidebar.info(
     """
@@ -17,9 +15,8 @@ st.sidebar.info(
     """
 )
 
-# Imagen del encabezado y título principal
 st.image(
-    "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=1200&q=80",
+    "https://s03.s3c.es/imag/_v0/1200x655/4/3/0/IA.jpg",
     use_container_width=True
 )
 
@@ -50,12 +47,10 @@ glosario = {
     "20. Vocabulario de Tokens": "El conjunto completo e integral de todos los tokens únicos que un modelo de lenguaje o modelo de base reconoce y puede procesar."
 }
 
-# Buscador
 busqueda = st.text_input("Buscar término o palabra clave:", "")
 
 st.markdown("---")
 
-# Despliegue de términos
 encontrados = 0
 for concepto, definicion in glosario.items():
     if busqueda.lower() in concepto.lower() or busqueda.lower() in definicion.lower():
@@ -66,7 +61,6 @@ for concepto, definicion in glosario.items():
 if encontrados == 0:
     st.warning("No se encontraron conceptos relacionados con tu búsqueda.")
 
-# Referencias Bibliográficas
 st.markdown("---")
 st.subheader("Referencias Bibliográficas")
 st.markdown(
@@ -76,6 +70,5 @@ st.markdown(
     """
 )
 
-# Derechos Reservados al final
 st.markdown("---")
 st.caption("© 2026 Todos los derechos reservados. Desarrollado para la materia de Fundamentos de Inteligencia Artificial.")
