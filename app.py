@@ -23,7 +23,6 @@ st.image(
 st.title("Glosario de Inteligencia Artificial")
 st.write("Explora los conceptos clave de la Inteligencia Artificial. Haz clic sobre cualquier término para ver su definición o utiliza el buscador para filtrar la lista.")
 
-# Diccionario de términos (Arreglo key-value sin definiciones generales de IA)
 glosario = {
     "1. Agentes de IA": "Una aplicación que logra un objetivo a través del procesamiento de entradas, realización de razonamientos con herramientas disponibles y toma de medidas según sus decisiones. Consiste en orquestación, perfil, memoria, razonamiento, modelo y herramientas.",
     "2. Ventana de contexto": "La cantidad de tokens que un modelo de base puede procesar en una instrucción determinada. Una ventana más grande permite procesar más información para generar respuestas más coherentes y completas.",
