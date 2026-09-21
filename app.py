@@ -108,6 +108,7 @@ if "seccion_activa" not in st.session_state:
 st.sidebar.title("Navegación")
 
 modulos = [
+    "Definición de Inteligencia Artificial",
     "Glosario de IA",
     "Antecedentes de la IA",
     "IA débil o estrecha",
@@ -120,7 +121,7 @@ for modulo in modulos:
     etiqueta = (
         f"🔹 {modulo}"
         if st.session_state.seccion_activa == modulo
-        else f"  {modulo}"
+        else f"   {modulo}"
     )
     if st.sidebar.button(etiqueta, key=modulo):
         st.session_state.seccion_activa = modulo
@@ -134,8 +135,28 @@ st.sidebar.info(
     """
 )
 
+# VISTA 0: DEFINICIÓN DE INTELIGENCIA ARTIFICIAL
+if st.session_state.seccion_activa == "Definición de Inteligencia Artificial":
+    st.title("Definición de Inteligencia Artificial")
+    
+    st.image(
+        "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
+        caption="Red neuronal y representación del aprendizaje automático",
+        use_container_width=True,
+    )
+    
+    st.markdown(
+        """
+        ### ¿Qué es la Inteligencia Artificial?
+        
+        La **Inteligencia Artificial** es un campo interdisciplinario dedicado al diseño de sistemas capaces de realizar 
+        tareas asociadas con la inteligencia humana, como **aprender, razonar, reconocer patrones, comprender lenguaje, 
+        resolver problemas y tomar decisiones**.
+        """
+    )
+
 # VISTA 1: GLOSARIO DE IA
-if st.session_state.seccion_activa == "Glosario de IA":
+elif st.session_state.seccion_activa == "Glosario de IA":
     st.image(
         "https://s03.s3c.es/imag/_v0/1200x655/4/3/0/IA.jpg",
         use_container_width=True,
