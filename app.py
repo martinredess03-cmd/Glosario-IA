@@ -170,12 +170,12 @@ elif st.session_state.seccion_activa == "Glosario de IA":
     )
 
     glosario = {
-        "1. Agentes de IA": (
-            "Una aplicación que logra un objetivo a través del procesamiento"
-            " de entradas, realización de razonamientos con herramientas"
-            " disponibles y toma de medidas según sus decisiones. Consiste en"
-            " orquestación, perfil, memoria, razonamiento, modelo y"
-            " herramientas."
+        "1. Aprendizaje Automático (Machine Learning)": (
+            "Rama de la inteligencia artificial enfocada en el desarrollo de"
+            " algoritmos y modelos matemáticos que permiten a las computadoras"
+            " aprender, identificar patrones y tomar decisiones a partir de"
+            " datos, sin necesidad de ser programadas explícitamente para cada"
+            " tarea."
         ),
         "2. Ventana de contexto": (
             "La cantidad de tokens que un modelo de base puede procesar en una"
