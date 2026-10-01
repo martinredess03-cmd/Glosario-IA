@@ -138,13 +138,13 @@ st.sidebar.info(
 # VISTA 0: DEFINICIÓN DE INTELIGENCIA ARTIFICIAL
 if st.session_state.seccion_activa == "Definición de Inteligencia Artificial":
     st.title("Definición de Inteligencia Artificial")
-    
+
     st.image(
         "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80",
         caption="Red neuronal y representación del aprendizaje automático",
         use_container_width=True,
     )
-    
+
     st.markdown(
         """
         ### ¿Qué es la Inteligencia Artificial?
@@ -175,7 +175,22 @@ elif st.session_state.seccion_activa == "Glosario de IA":
             " algoritmos y modelos matemáticos que permiten a las computadoras"
             " aprender, identificar patrones y tomar decisiones a partir de"
             " datos, sin necesidad de ser programadas explícitamente para cada"
-            " tarea."
+            " tarea.\n\n"
+            "**Ejemplo práctico:**\n"
+            "En un videojuego de rol (RPG), un sistema de Machine Learning detecta bots tramposos "
+            "en la casa de subastas analizando el tiempo de reacción exacto que tarda un usuario "
+            "en hacer clic sobre un objeto desde el milisegundo en que aparece en pantalla; por "
+            "ejemplo, si una espada mítica se publica y un jugador presiona 'Comprar' a los 0.042 "
+            "segundos, el modelo procesa este dato de entrada medido en segundos con decimales para "
+            "compararlo con el límite fisiológico humano y determinar si la compra fue realizada por "
+            "una persona real o por un programa automatizado.\n\n"
+            "**Tipo de dato:** `Float`.\n\n"
+            "**¿Por qué?**\n"
+            "Porque es un número que contiene decimales (puntos flotantes). Como el tiempo de "
+            "reacción se mide en fracciones de segundo con gran precisión (0.042, 0.185, 0.005), "
+            "se necesita un tipo de dato continuo como `float` (o `double`) para no perder esa "
+            "información. Un número entero (`int`) no serviría porque redondearía el dato a 0 o 1, "
+            "perdiendo toda la precisión necesaria para detectar al bot."
         ),
         "2. Ventana de contexto": (
             "La cantidad de tokens que un modelo de base puede procesar en una"
@@ -271,6 +286,12 @@ elif st.session_state.seccion_activa == "Glosario de IA":
         "20. Vocabulario de Tokens": (
             "El conjunto completo e integral de todos los tokens únicos que un"
             " modelo de lenguaje o modelo de base reconoce y puede procesar."
+        ),
+        "21. Sistema Inteligente": (
+            "Un sistema computacional interactivo capaz de percibir su entorno "
+            "a través de datos o sensores, procesar dicha información mediante "
+            "algoritmos de razonamiento o aprendizaje, tomar decisiones autónomas "
+            "y ejecutar acciones para alcanzar un objetivo específico de manera eficiente."
         ),
     }
 
