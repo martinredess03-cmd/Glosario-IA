@@ -354,79 +354,107 @@ elif st.session_state.seccion_activa == "Algoritmos de Búsqueda":
     st.title("🔎 Algoritmos de Búsqueda en Inteligencia Artificial")
     
     st.markdown("""
-    En Inteligencia Artificial, la resolución de problemas a menudo se formula como la búsqueda de una secuencia de acciones que conducen desde una situación inicial hasta un estado meta deseado.
+    En el núcleo de la Inteligencia Artificial tradicional y la resolución de problemas reside el concepto de **búsqueda en espacio de estados**. 
+    Un agente inteligente no siempre conoce la solución inmediata a un problema; por lo tanto, debe evaluar una secuencia de acciones hipotéticas 
+    en una estructura computacional (generalmente un árbol o grafo) para determinar la trayectoria óptima hacia su objetivo.
     """)
 
     st.markdown("---")
 
     # a) Definición
-    st.subheader("a) Definición de Algoritmo de Búsqueda")
-    st.info(
-        "Un **Algoritmo de Búsqueda** es un método sistemático o conjunto de reglas estructuradas que explora "
-        "un **espacio de estados** (un conjunto de configuraciones o situaciones posibles) para encontrar un camino o una "
-        "solución que vaya desde un **estado inicial** hasta un **estado objetivo o meta**, optimizando habitualmente "
-        "recursos como el tiempo, la distancia o el costo."
-    )
+    st.subheader("a) Definición Fundamentada de Algoritmo de Búsqueda")
+    st.markdown("""
+    Un **Algoritmo de Búsqueda** es un procedimiento computacional sistemático que evalúa y navega de forma estructurada a través de un **espacio de estados** 
+    (un grafo o árbol formado por todas las configuraciones posibles de un problema) para transformar una situación inicial en una situación deseada o meta.
+
+    * **Propósito en IA:** Proveer un mecanismo de razonamiento automático cuando la solución no puede calcularse mediante una fórmula matemática directa o una respuesta almacenada.
+    * **Criterios de Evaluación Técnica:**
+        * **Completitud:** ¿Garantiza el algoritmo encontrar una solución si esta existe?
+        * **Optimidad:** ¿Encuentra la solución con el menor costo posible?
+        * **Complejidad Temporal:** ¿Cuánto tiempo tarda en ejecutar la búsqueda (medido en nodos expandidos)?
+        * **Complejidad Espacial:** ¿Cuánta memoria requiere mantener los nodos generados?
+    """)
 
     # b) Elementos
-    st.subheader("b) Elementos que Intervienen en un Algoritmo de Búsqueda")
+    st.subheader("b) Elementos Formales que Intervienen en la Búsqueda")
     st.markdown("""
-    Para formalizar un problema de búsqueda se requieren los siguientes componentes clave:
-    
-    1. **Estado Inicial:** La configuración o punto de partida del sistema antes de iniciar la búsqueda.
-    2. **Conjunto de Estados (Espacio de Estados):** El conjunto de todas las situaciones o configuraciones alcanzables a través de acciones.
-    3. **Operadores / Acciones:** Las reglas o transiciones permitidas que transforman un estado en otro.
-    4. **Prueba de Meta (Goal Test):** Una función o condición booleana que verifica si un estado determinado corresponde al objetivo buscado.
-    5. **Costo del Camino (Cost Function):** Una función numérica que asigna un valor/peso al trayecto recorrido (por ejemplo, distancia, tiempo, combustible, energía).
-    6. **Frontier / Lista de Abiertos:** Estructura de datos donde se almacenan los nodos/estados generados pero aún no explorados.
+    La formulación rigurosa de un problema de búsqueda abarca seis elementos esenciales:
+
+    1. **Estado Inicial ($S_0$):** Representación del punto de partida del agente en el entorno antes de aplicar cualquier acción.
+    2. **Espacio de Estados ($S$):** El conjunto hipotético de todas las configuraciones válidas alcanzables.
+    3. **Conjunto de Acciones / Operadores ($A(s)$):** Las transiciones o reglas permitidas que un agente puede ejecutar sobre un estado $s$ para generar un nuevo estado sucesor $s'$.
+    4. **Modelo de Transición $RESULT(s, a)$:** La función matemática que define formalmente el estado resultante $s'$ tras aplicar la acción $a$ en el estado $s$.
+    5. **Prueba de Meta (Goal Test):** Una función lógica booleana $IS\_GOAL(s)$ que determina si el estado actual $s$ satisface los requisitos del objetivo.
+    6. **Costo del Camino ($g(n)$):** La función numérica que calcula el costo acumulado de la secuencia de acciones recorridas.
+    7. **Frontera de Búsqueda (Lista de Abiertos / Nodos por Explorar):** Estructura de datos (cola FIFO, LIFO, de prioridad, etc.) que gestiona los nodos descubiertos pero aún no evaluados.
     """)
 
     # c) Ejemplo
-    st.subheader("c) Ejemplo Práctico Identificando Elementos")
-    st.write("#### Ejemplo: Un GPS calculando la ruta de Ciudad A (Puebla) a Ciudad B (Ciudad de México)")
+    st.subheader("c) Ejemplo Práctico e Identificación Formal de Elementos")
+    st.markdown("#### Caso de Estudio: Agente Navegador GPS (De Puebla a Ciudad de México)")
     
     col1, col2 = st.columns(2)
     with col1:
         st.markdown("""
-        * **Estado Inicial:** Estar ubicado en la posición actual (*Puebla*).
-        * **Espacio de Estados:** Todas las ciudades, intersecciones y casetas conectadas por la red de carreteras del país.
-        * **Acciones / Operadores:** Transitar por un tramo de autopista hacia una ciudad contigua (ej. *Tomar la autopista México-Puebla hacia Ixtapaluca*).
+        * **Estado Inicial ($S_0$):** Agente ubicado en las coordenadas de *Puebla Centro*.
+        * **Espacio de Estados ($S$):** Red vial que interconecta ciudades, cruces y casetas de peaje entre ambos destinos.
+        * **Acciones / Operadores ($A$):** Alternativas viales desde el nodo actual (ej. *Tomar la autopista México-Puebla*, *Tomar la carretera federal*).
+        * **Modelo de Transición:** Si se está en *Puebla* y se ejecuta la acción *Viajar a San Martín Texmelucan*, el nuevo estado es *San Martín Texmelucan*.
         """)
     with col2:
         st.markdown("""
-        * **Prueba de Meta:** ¿La ubicación actual es *Ciudad de México*? (Verdadero/Falso).
-        * **Costo del Camino:** La suma de los kilómetros recorridos o minutos del trayecto.
-        * **Solución Encontrada:** La ruta óptima que minimiza la distancia total o el tiempo de viaje.
+        * **Prueba de Meta:** ¿`Ubicación_Actual == 'Ciudad de México'`?
+        * **Costo del Camino ($g(n)$):** Suma ponderada de la distancia en kilómetros, el tiempo estimado y el costo de peajes.
+        * **Estrategia de Selección:** Mantener en la **Frontera** las intersecciones próximas para elegir en cada paso la vía con menor costo acumulado.
+        * **Solución Esperada:** La secuencia óptima de tramos de carretera que minimizan el costo total del viaje.
         """)
 
     # d) Clasificación
-    st.subheader("d) Clasificación de los Algoritmos de Búsqueda")
+    st.subheader("d) Clasificación Completa de Algoritmos de Búsqueda")
     
-    tab1, tab2, tab3 = st.tabs(["1. Búsqueda No Informada (A Ciegas)", "2. Búsqueda Informada (Heurística)", "3. Búsqueda Adversarial"])
+    tab1, tab2, tab3 = st.tabs(["1. Búsqueda No Informada (Ciega)", "2. Búsqueda Informada (Heurística)", "3. Búsqueda Adversarial (Juegos)"])
     
     with tab1:
         st.markdown("""
         #### Búsqueda No Informada (Uninformed / Blind Search)
-        No utiliza conocimiento específico sobre el dominio del problema más allá de la definición de los estados y operadores. Explora de forma ciega.
-        * **Búsqueda en Anchura (BFS - Breadth-First Search):** Explora nodo por nodo nivel a nivel. Garantiza encontrar la solución más corta en grafos no ponderados.
-        * **Búsqueda en Profundidad (DFS - Depth-First Search):** Explora lo más profundo posible a lo largo de cada rama antes de retroceder (backtracking).
-        * **Búsqueda de Costo Uniforme (UCS / Dijkstra):** Evalúa nodos expandiendo siempre el de menor costo acumulado $g(n)$.
+        Estos algoritmos no poseen información sobre qué tan cerca se encuentra un estado particular de la meta; únicamente pueden distinguir si un estado es la meta o no.
+        
+        * **Búsqueda en Anchura (BFS - Breadth-First Search):**
+            * *Estrategia:* Utiliza una estructura de cola FIFO. Expande completamente un nivel del árbol antes de pasar al siguiente.
+            * *Propiedades:* Es **completo** y **óptimo** (si todos los costos de paso son iguales). Su desventaja es un alto consumo de memoria espacial $O(b^d)$.
+        * **Búsqueda en Profundidad (DFS - Depth-First Search):**
+            * *Estrategia:* Utiliza una pila LIFO. Explora la rama más profunda del espacio de estados hasta llegar a una hoja o callejón sin salida antes de hacer *backtracking*.
+            * *Propiedades:* Requiere poca memoria $O(b \cdot m)$, pero **no es completo** en espacios de profundidad infinita ni garantiza la optimidad.
+        * **Búsqueda de Costo Uniforme (UCS / Dijkstra):**
+            * *Estrategia:* Utiliza una cola de prioridad basada en el costo acumulado $g(n)$.
+            * *Propiedades:* Expande siempre el nodo con el menor costo de camino recorrido hasta el momento. Es **completo** y **óptimo** con costos de paso positivos.
         """)
         
     with tab2:
         st.markdown("""
         #### Búsqueda Informada (Informed / Heuristic Search)
-        Utiliza conocimiento previo o guías estimadas (**función heurística $h(n)$**) para dirigir la búsqueda de manera eficiente hacia la meta.
-        * **Búsqueda Primero el Mejor (Greedy Best-First Search):** Elige expandir el nodo que parece estar más cerca de la meta según la heurística $h(n)$.
-        * **Algoritmo A* (A-Star):** Combina el costo real acumulado $g(n)$ con la estimación heurística $h(n)$ mediante la función $f(n) = g(n) + h(n)$. Es óptimo y completo.
+        Emplean conocimiento contextual mediante una **función heurística $h(n)$**, la cual estima el costo restante desde el nodo $n$ hasta la meta más cercana.
+
+        * **Búsqueda Primero el Mejor (Greedy Best-First Search):**
+            * *Estrategia:* Evalúa y expande el nodo con el menor valor heurístico $h(n)$ (el que *parece* estar más cerca de la meta).
+            * *Propiedades:* Es muy rápido en la práctica, pero **no es óptimo** ni completo en todos los escenarios, ya que puede dejarse llevar por atajos engañosos.
+        * **Algoritmo A\* (A-Star):**
+            * *Estrategia:* Combina el costo real acumulado $g(n)$ y el costo estimado restante $h(n)$ mediante la función de evaluación:
+              $$f(n) = g(n) + h(n)$$
+            * *Propiedades:* Es **completo y óptimo** siempre que la heurística $h(n)$ sea **admisible** (nunca sobreestime el costo real a la meta) y **consistente** (cumpla la desigualdad triangular).
         """)
 
     with tab3:
         st.markdown("""
-        #### Búsqueda Adversarial (Juegos)
-        Se aplica en entornos competitivos donde dos o más agentes persiguen objetivos opuestos.
-        * **Algoritmo Minimax:** Utilizado en juegos de suma cero de dos jugadores (ej. Ajedrez, Tres en Raya). Minimiza la máxima pérdida posible del jugador.
-        * **Poda Alfa-Beta ($\alpha-\beta$ Pruning):** Optimización de Minimax que elimina ramas del árbol de búsqueda que no afectarán la decisión final.
+        #### Búsqueda Adversarial (Entornos Competitivos)
+        Se utiliza cuando la resolución del problema involucra la presencia de oponentes activos que intentan maximizar su propia ganancia y minimizar la del agente.
+
+        * **Algoritmo Minimax:**
+            * *Estrategia:* Modela el espacio de estados en juegos de suma cero de dos jugadores (MAX y MIN). Asume que el oponente elegirá la jugada que peor beneficie al agente.
+            * *Propiedades:* Calcula la decisión racional óptima explorando todo el árbol de juego de forma recursiva.
+        * **Poda Alfa-Beta ($\alpha-\beta$ Pruning):**
+            * *Estrategia:* Una técnica de optimización para el algoritmo Minimax que elimina o "poda" las ramas del árbol que se demuestra matemáticamente que no afectarán la decisión final.
+            * *Propiedades:* Permite explorar árboles de decisión mucho más profundos reduciendo a la mitad el factor de ramificación efectivo sin perder la exactitud matemática del resultado.
         """)
 
     st.markdown("---")
