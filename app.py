@@ -349,7 +349,7 @@ elif st.session_state.seccion_activa == "Glosario de IA":
             "No se encontraron conceptos relacionados con tu búsqueda."
         )
 
-# NUEVA VISTA: ALGORITMOS DE BÚSQUEDA
+# VISTA: ALGORITMOS DE BÚSQUEDA
 elif st.session_state.seccion_activa == "Algoritmos de Búsqueda":
     st.title("🔎 Algoritmos de Búsqueda en Inteligencia Artificial")
     
@@ -428,6 +428,10 @@ elif st.session_state.seccion_activa == "Algoritmos de Búsqueda":
         * **Algoritmo Minimax:** Utilizado en juegos de suma cero de dos jugadores (ej. Ajedrez, Tres en Raya). Minimiza la máxima pérdida posible del jugador.
         * **Poda Alfa-Beta ($\alpha-\beta$ Pruning):** Optimización de Minimax que elimina ramas del árbol de búsqueda que no afectarán la decisión final.
         """)
+
+    st.markdown("---")
+    st.subheader("📄 Infografía: Clasificación de Algoritmos de Búsqueda")
+    mostrar_pdf("Infografia_clasificacion_algoritmos_de_busqueda (1).pdf")
 
 # VISTA 2: ANTECEDENTES DE LA IA
 elif st.session_state.seccion_activa == "Antecedentes de la IA":
