@@ -110,6 +110,7 @@ st.sidebar.title("Navegación")
 modulos = [
     "Definición de Inteligencia Artificial",
     "Glosario de IA",
+    "Algoritmos de Búsqueda",
     "Antecedentes de la IA",
     "IA débil o estrecha",
     "IA fuerte o general",
@@ -294,37 +295,37 @@ elif st.session_state.seccion_activa == "Glosario de IA":
             "y ejecutar acciones para alcanzar un objetivo específico de manera eficiente.\n\n"
             "### Esquema del Ecosistema de un Sistema Inteligente\n\n"
             "```text\n"
-            "               ┌──────────────────────────────────────────┐\n"
-            "               │              ENTORNO / MEDIO             │\n"
-            "               │   (El mundo real, datos, usuarios)       │\n"
-            "               └────────────────────┬─────────────────────┘\n"
-            "                                    │\n"
-            "                         [ Realidad / Estímulos ]\n"
-            "                                    │\n"
-            "                                    ▼\n"
+            "                ┌──────────────────────────────────────────┐\n"
+            "                │               ENTORNO / MEDIO            │\n"
+            "                │   (El mundo real, datos, usuarios)       │\n"
+            "                └────────────────────┬─────────────────────┘\n"
+            "                                     │\n"
+            "                          [ Realidad / Estímulos ]\n"
+            "                                     │\n"
+            "                                     ▼\n"
             "┌─────────────────────────────────────────────────────────────────────────┐\n"
-            "│                          SISTEMA INTELIGENTE                            │\n"
+            "│                           SISTEMA INTELIGENTE                           │\n"
             "│                                                                         │\n"
             "│  1. PERCEPCIÓN (Entrada)                                                │\n"
             "│  └─► Sensores / Captura de Datos (Cámaras, APIs, Teclado, Micrófono)    │\n"
-            "│                                   │                                     │\n"
-            "│                                   ▼                                     │\n"
+            "│                                    │                                    │\n"
+            "│                                    ▼                                    │\n"
             "│  2. PROCESAMIENTO Y DECISIÓN (Cerebro)                                  │\n"
             "│  └─► Modelo de IA / Algoritmos / Aprendizaje / Base de Conocimiento     │\n"
-            "│                                   │                                     │\n"
-            "│                                   ▼                                     │\n"
+            "│                                    │                                    │\n"
+            "│                                    ▼                                    │\n"
             "│  3. ACCIÓN (Salida)                                                     │\n"
             "│  └─► Actuadores / Ejecución (Motores, Interfaz, Notificaciones, Pantalla)│\n"
             "│                                                                         │\n"
             "└───────────────────────────────────┬─────────────────────────────────────┘\n"
-            "                                    │\n"
-            "                            [ Cambio / Feedback ]\n"
-            "                                    │\n"
-            "                                    ▼\n"
-            "               ┌──────────────────────────────────────────┐\n"
-            "               │       RETROALIMENTACIÓN AL ENTORNO       │\n"
-            "               │    (El entorno cambia tras la acción)    │\n"
-            "               └──────────────────────────────────────────┘\n"
+            "                                     │\n"
+            "                             [ Cambio / Feedback ]\n"
+            "                                     │\n"
+            "                                     ▼\n"
+            "                ┌──────────────────────────────────────────┐\n"
+            "                │        RETROALIMENTACIÓN AL ENTORNO      │\n"
+            "                │    (El entorno cambia tras la acción)    │\n"
+            "                └──────────────────────────────────────────┘\n"
             "```"
         ),
     }
@@ -347,6 +348,86 @@ elif st.session_state.seccion_activa == "Glosario de IA":
         st.warning(
             "No se encontraron conceptos relacionados con tu búsqueda."
         )
+
+# NUEVA VISTA: ALGORITMOS DE BÚSQUEDA
+elif st.session_state.seccion_activa == "Algoritmos de Búsqueda":
+    st.title("🔎 Algoritmos de Búsqueda en Inteligencia Artificial")
+    
+    st.markdown("""
+    En Inteligencia Artificial, la resolución de problemas a menudo se formula como la búsqueda de una secuencia de acciones que conducen desde una situación inicial hasta un estado meta deseado.
+    """)
+
+    st.markdown("---")
+
+    # a) Definición
+    st.subheader("a) Definición de Algoritmo de Búsqueda")
+    st.info(
+        "Un **Algoritmo de Búsqueda** es un método sistemático o conjunto de reglas estructuradas que explora "
+        "un **espacio de estados** (un conjunto de configuraciones o situaciones posibles) para encontrar un camino o una "
+        "solución que vaya desde un **estado inicial** hasta un **estado objetivo o meta**, optimizando habitualmente "
+        "recursos como el tiempo, la distancia o el costo."
+    )
+
+    # b) Elementos
+    st.subheader("b) Elementos que Intervienen en un Algoritmo de Búsqueda")
+    st.markdown("""
+    Para formalizar un problema de búsqueda se requieren los siguientes componentes clave:
+    
+    1. **Estado Inicial:** La configuración o punto de partida del sistema antes de iniciar la búsqueda.
+    2. **Conjunto de Estados (Espacio de Estados):** El conjunto de todas las situaciones o configuraciones alcanzables a través de acciones.
+    3. **Operadores / Acciones:** Las reglas o transiciones permitidas que transforman un estado en otro.
+    4. **Prueba de Meta (Goal Test):** Una función o condición booleana que verifica si un estado determinado corresponde al objetivo buscado.
+    5. **Costo del Camino (Cost Function):** Una función numérica que asigna un valor/peso al trayecto recorrido (por ejemplo, distancia, tiempo, combustible, energía).
+    6. **Frontier / Lista de Abiertos:** Estructura de datos donde se almacenan los nodos/estados generados pero aún no explorados.
+    """)
+
+    # c) Ejemplo
+    st.subheader("c) Ejemplo Práctico Identificando Elementos")
+    st.write("#### Ejemplo: Un GPS calculando la ruta de Ciudad A (Puebla) a Ciudad B (Ciudad de México)")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("""
+        * **Estado Inicial:** Estar ubicado en la posición actual (*Puebla*).
+        * **Espacio de Estados:** Todas las ciudades, intersecciones y casetas conectadas por la red de carreteras del país.
+        * **Acciones / Operadores:** Transitar por un tramo de autopista hacia una ciudad contigua (ej. *Tomar la autopista México-Puebla hacia Ixtapaluca*).
+        """)
+    with col2:
+        st.markdown("""
+        * **Prueba de Meta:** ¿La ubicación actual es *Ciudad de México*? (Verdadero/Falso).
+        * **Costo del Camino:** La suma de los kilómetros recorridos o minutos del trayecto.
+        * **Solución Encontrada:** La ruta óptima que minimiza la distancia total o el tiempo de viaje.
+        """)
+
+    # d) Clasificación
+    st.subheader("d) Clasificación de los Algoritmos de Búsqueda")
+    
+    tab1, tab2, tab3 = st.tabs(["1. Búsqueda No Informada (A Ciegas)", "2. Búsqueda Informada (Heurística)", "3. Búsqueda Adversarial"])
+    
+    with tab1:
+        st.markdown("""
+        #### Búsqueda No Informada (Uninformed / Blind Search)
+        No utiliza conocimiento específico sobre el dominio del problema más allá de la definición de los estados y operadores. Explora de forma ciega.
+        * **Búsqueda en Anchura (BFS - Breadth-First Search):** Explora nodo por nodo nivel a nivel. Garantiza encontrar la solución más corta en grafos no ponderados.
+        * **Búsqueda en Profundidad (DFS - Depth-First Search):** Explora lo más profundo posible a lo largo de cada rama antes de retroceder (backtracking).
+        * **Búsqueda de Costo Uniforme (UCS / Dijkstra):** Evalúa nodos expandiendo siempre el de menor costo acumulado $g(n)$.
+        """)
+        
+    with tab2:
+        st.markdown("""
+        #### Búsqueda Informada (Informed / Heuristic Search)
+        Utiliza conocimiento previo o guías estimadas (**función heurística $h(n)$**) para dirigir la búsqueda de manera eficiente hacia la meta.
+        * **Búsqueda Primero el Mejor (Greedy Best-First Search):** Elige expandir el nodo que parece estar más cerca de la meta según la heurística $h(n)$.
+        * **Algoritmo A* (A-Star):** Combina el costo real acumulado $g(n)$ con la estimación heurística $h(n)$ mediante la función $f(n) = g(n) + h(n)$. Es óptimo y completo.
+        """)
+
+    with tab3:
+        st.markdown("""
+        #### Búsqueda Adversarial (Juegos)
+        Se aplica en entornos competitivos donde dos o más agentes persiguen objetivos opuestos.
+        * **Algoritmo Minimax:** Utilizado en juegos de suma cero de dos jugadores (ej. Ajedrez, Tres en Raya). Minimiza la máxima pérdida posible del jugador.
+        * **Poda Alfa-Beta ($\alpha-\beta$ Pruning):** Optimización de Minimax que elimina ramas del árbol de búsqueda que no afectarán la decisión final.
+        """)
 
 # VISTA 2: ANTECEDENTES DE LA IA
 elif st.session_state.seccion_activa == "Antecedentes de la IA":
@@ -379,6 +460,7 @@ st.markdown("---")
 st.subheader("Referencias Bibliográficas")
 st.markdown(
     """
+    * Russell, S., & Norvig, P. (2020). *Artificial Intelligence: A Modern Approach* (4th ed.). Pearson.
     * Google Cloud. (s. f.). *Glosario de IA generativa*. Documentación de Google Cloud. https://docs.cloud.google.com/docs/generative-ai/glossary?hl=es-419
     * Ray, S. (6 de noviembre de 2023). *10 términos de IA que todos deberían conocer*. Microsoft Source LATAM. https://news.microsoft.com/source/latam/features/ia/10-terminos-de-ia-que-todos-deberian-conocer/
     """
